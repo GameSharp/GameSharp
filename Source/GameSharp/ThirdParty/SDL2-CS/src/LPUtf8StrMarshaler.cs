@@ -23,8 +23,6 @@
  * Ethan "flibitijibibo" Lee <flibitijibibo@flibitijibibo.com>
  *
  */
- 
-// Modified by 1vanK for GameSharp
 
 using System;
 using System.Text;
@@ -82,7 +80,7 @@ namespace SDL2
 				throw new ArgumentException("ManagedObj must be a string.", "ManagedObj");
 			}
 			var bytes = Encoding.UTF8.GetBytes(str);
-			var mem = SDL.SDL_malloc((IntPtr)(bytes.Length + 1));
+			var mem = SDL.SDL_malloc((IntPtr) (bytes.Length + 1));
 			Marshal.Copy(bytes, 0, mem, bytes.Length);
 			((byte*)mem)[bytes.Length] = 0;
 			return mem;
