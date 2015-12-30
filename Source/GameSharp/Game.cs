@@ -5,6 +5,7 @@ namespace GameSharp
     public class Game
     {
         public GameTime GameTime { get; private set; }
+        public Graphics Graphics { get; private set; }
     
         bool isExiting = false;
         
@@ -16,6 +17,7 @@ namespace GameSharp
         public void Run()
         {
             GameTime = new GameTime();
+            Graphics = new Graphics();
         
             while (!isExiting)
             {
