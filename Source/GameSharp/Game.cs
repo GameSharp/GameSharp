@@ -4,6 +4,8 @@ namespace GameSharp
 {
     public class Game
     {
+        public GameTime GameTime { get; private set; }
+    
         bool isExiting = false;
         
         public void Exit()
@@ -13,9 +15,11 @@ namespace GameSharp
 
         public void Run()
         {
+            GameTime = new GameTime();
+        
             while (!isExiting)
             {
-                Console.WriteLine("Press Esc");
+                Console.WriteLine(GameTime.Elapsed);
                 while (Console.KeyAvailable)
                 {
                     var cki = Console.ReadKey(true);
