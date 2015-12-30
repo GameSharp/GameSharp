@@ -19,7 +19,8 @@ namespace GameSharp
         
             while (!isExiting)
             {
-                Console.WriteLine(GameTime.Elapsed);
+                GameTime.Update();
+                Console.WriteLine(GameTime.Step.Milliseconds);
                 while (Console.KeyAvailable)
                 {
                     var cki = Console.ReadKey(true);
