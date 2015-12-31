@@ -25,6 +25,7 @@ namespace GameSharp
             {
                 GameTime.Update();
                 Input.Update();
+                Graphics.Update();
                 System.Threading.Thread.Sleep(1);
             }
         }
