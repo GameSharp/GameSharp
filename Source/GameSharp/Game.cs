@@ -6,6 +6,7 @@ namespace GameSharp
     {
         public GameTime GameTime { get; private set; }
         public Graphics Graphics { get; private set; }
+        public Input Input { get; private set; }
     
         bool isExiting = false;
         
@@ -18,18 +19,13 @@ namespace GameSharp
         {
             GameTime = new GameTime();
             Graphics = new Graphics();
+            Input = new Input(this);
         
             while (!isExiting)
             {
                 GameTime.Update();
-                Console.WriteLine(GameTime.Step.Milliseconds);
-                while (Console.KeyAvailable)
-                {
-                    var cki = Console.ReadKey(true);
-                    if (cki.Key == ConsoleKey.Escape)
-                        Exit();
-                }
-                System.Threading.Thread.Sleep(200);
+                Input.Update();
+                System.Threading.Thread.Sleep(1);
             }
         }
     }
