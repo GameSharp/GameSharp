@@ -1,6 +1,5 @@
 using SDL_Keycode = SDL2.SDL.SDL_Keycode;
 
-
 namespace  GameSharp
 {
     public enum Keys

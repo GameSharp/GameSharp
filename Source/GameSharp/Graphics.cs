@@ -1,5 +1,6 @@
 using System;
 using SDL2;
+using OpenGL;
 
 namespace GameSharp
 {
@@ -8,10 +9,13 @@ namespace GameSharp
         public Graphics()
         {
             SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
-            var window = SDL.SDL_CreateWindow("GameSharp", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
-            var screenSurface = SDL.SDL_GetWindowSurface(window);
-            SDL.SDL_FillRect(screenSurface, IntPtr.Zero, 0xFF);
-            SDL.SDL_UpdateWindowSurface(window);
-        }
+            SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+            SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_CONTEXT_MINOR_VERSION, 1);
+            var window = SDL.SDL_CreateWindow("GameSharp", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_OPENGL);
+            var glContext = SDL.SDL_GL_CreateContext(window);
+            GL.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+            SDL.SDL_GL_SwapWindow(window);
+         }
     }
 }
