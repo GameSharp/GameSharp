@@ -1,2 +1,4 @@
 /Bin/GameSharp.dll
 /Bin/*.exe
+/Bin/*.txt
+/Bin/*.pdb

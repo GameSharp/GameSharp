@@ -18,9 +18,10 @@ namespace GameSharp
         public void Run()
         {
             GameTime = new GameTime();
+            Log.Open("Log.txt");
             Graphics = new Graphics();
             Input = new Input(this);
-        
+            
             while (!isExiting)
             {
                 GameTime.Update();
