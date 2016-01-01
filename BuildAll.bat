@@ -4,7 +4,9 @@ csc /unsafe /platform:x86 /target:library /out:Bin\GameSharp.dll^
     Source\GameSharp\*.cs^
     Source\GameSharp\Input\*.cs^
     Source\ThirdParty\SDL2-CS\src\*.cs^
-    Source\ThirdParty\opengl4csharp\OpenGL\*.cs
+    Source\ThirdParty\opengl4csharp\OpenGL\Constructs\*.cs^
+    Source\ThirdParty\opengl4csharp\OpenGL\Core\*.cs^
+    Source\ThirdParty\opengl4csharp\OpenGL\Math\*.cs
 
 csc /platform:x86 /target:winexe /out:Bin\HelloWorld.exe /reference:Bin\GameSharp.dll Source\Samples\01_HelloWorld\*.cs
 

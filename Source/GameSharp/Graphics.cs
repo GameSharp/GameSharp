@@ -19,8 +19,8 @@ namespace GameSharp
          
          public void Update()
          {
-            GL.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
+            Gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+            Gl.Clear(ClearBufferMask.ColorBufferBit);
             SDL.SDL_GL_SwapWindow(window);
          }
     }
