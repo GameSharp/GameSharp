@@ -3,15 +3,15 @@ using System.Diagnostics;
 
 namespace GameSharp
 {
-    public class GameTime
+    public static class GameTime
     {
-        private Stopwatch stopwatch = Stopwatch.StartNew();
-        private TimeSpan previous = TimeSpan.Zero;
+        private static Stopwatch stopwatch = Stopwatch.StartNew();
+        private static TimeSpan previous = TimeSpan.Zero;
 
-        public TimeSpan Elapsed { get { return stopwatch.Elapsed; } }
-        public TimeSpan Step { get; private set; }
+        public static TimeSpan Elapsed { get { return stopwatch.Elapsed; } }
+        public static TimeSpan Step { get; private set; }
 
-        public void Update()
+        public static void Update()
         {
             Step = Elapsed - previous;
             previous = Elapsed;

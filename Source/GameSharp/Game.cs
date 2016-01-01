@@ -4,7 +4,6 @@ namespace GameSharp
 {
     public class Game
     {
-        public GameTime GameTime { get; private set; }
         public Graphics Graphics { get; private set; }
         public Input Input { get; private set; }
     
@@ -17,7 +16,6 @@ namespace GameSharp
 
         public void Run()
         {
-            GameTime = new GameTime();
             Log.Open("Log.txt");
             Graphics = new Graphics();
             Input = new Input(this);
