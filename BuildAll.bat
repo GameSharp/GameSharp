@@ -2,7 +2,8 @@ set "PATH=c:\Windows\Microsoft.NET\Framework\v4.0.30319\"
 
 csc /unsafe /platform:x86 /target:library /out:Bin\GameSharp.dll^
     Source\GameSharp\*.cs^
-    Source\GameSharp\Input\*.cs^
+    Source\GameSharp\Subsystems\*.cs^
+    Source\GameSharp\Subsystems\Input\*.cs^
     Source\ThirdParty\SDL2-CS\src\*.cs^
     Source\ThirdParty\opengl4csharp\OpenGL\Constructs\*.cs^
     Source\ThirdParty\opengl4csharp\OpenGL\Core\*.cs^
