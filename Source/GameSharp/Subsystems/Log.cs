@@ -1,46 +1,25 @@
 using System;
 using System.IO;
 
-namespace GameSharp
+static class Log
 {
-    public static class Log
+    static StreamWriter streamWriter = null;
+        
+    public static void Init(string fileName)
     {
-        private static StreamWriter streamWriter = null;
+        streamWriter = new StreamWriter(fileName);
+        streamWriter.AutoFlush = true;
+        WriteLine("Opened log file " + Path.GetFullPath(fileName));
+    }
         
-        private static string Timestamp
-        {
-            get
-            {
-                return DateTime.Now.ToString("G");
-            }
-        }
-
-        public static void Open(string fileName)
-        {
-            if (streamWriter != null)
-                Close();
-            streamWriter = new StreamWriter(fileName);
-            streamWriter.AutoFlush = true;
-            WriteLine("Opened log file " + Path.GetFullPath(fileName));
-        }
+    public static void WriteRaw(string message)
+    {
+        streamWriter.Write(message);
+    }
         
-        public static void Close()
-        {
-            if (streamWriter != null)
-            {
-                streamWriter.Dispose();
-                streamWriter = null;
-            }
-        }
-        
-        public static void WriteRaw(string message)
-        {
-            streamWriter.Write(message);
-        }
-        
-        public static void WriteLine(string message)
-        {
-            streamWriter.WriteLine("[" + Timestamp + "] " + message);
-        }
+    public static void WriteLine(string message)
+    {
+        var timestamp = DateTime.Now.ToString("G");
+        streamWriter.WriteLine("[" + timestamp + "] " + message);
     }
 }

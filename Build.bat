@@ -1,6 +1,6 @@
 set "PATH=c:\Windows\Microsoft.NET\Framework\v4.0.30319\"
 
-csc /unsafe /platform:x86 /target:winexe /out:Bin\01_HelloWorld.exe^
+csc /unsafe /platform:x86 /target:winexe /optimize /out:Bin\01_HelloWorld.exe^
     Source\GameSharp\*.cs^
     Source\GameSharp\Subsystems\*.cs^
     Source\GameSharp\Subsystems\Input\*.cs^

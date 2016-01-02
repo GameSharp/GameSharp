@@ -1,27 +1,24 @@
 using SDL2;
 
-namespace GameSharp
+static class Input
 {
-    public static class Input
+    static void HandleSDLEvent(SDL.SDL_Event e)
     {
-        public static void Update()
+        if (e.type == SDL.SDL_EventType.SDL_QUIT)
         {
-            SDL.SDL_Event e;
-            while (SDL.SDL_PollEvent(out e) != 0)
-                HandleSDLEvent(e);
+            Game.Exit();
         }
-        
-        private static void HandleSDLEvent(SDL.SDL_Event e)
+        else if (e.type == SDL.SDL_EventType.SDL_KEYDOWN)
         {
-            if (e.type == SDL.SDL_EventType.SDL_QUIT)
-            {
+            if (e.key.keysym.sym == SDL.SDL_Keycode.SDLK_ESCAPE)
                 Game.Exit();
-            }
-            else if (e.type == SDL.SDL_EventType.SDL_KEYDOWN)
-            {
-                if (e.key.keysym.sym == SDL.SDL_Keycode.SDLK_ESCAPE)
-                    Game.Exit();
-            }
         }
+    }
+
+    public static void Update()
+    {
+        SDL.SDL_Event e;
+        while (SDL.SDL_PollEvent(out e) != 0)
+            HandleSDLEvent(e);
     }
 }

@@ -1,9 +1,10 @@
-namespace GameSharp
+static partial class Game
 {
-    public static partial class Game
+    static void Init()
     {
-        private static void Update()
-        {
-        }
+    }
+
+    static void Update()
+    {
     }
 }

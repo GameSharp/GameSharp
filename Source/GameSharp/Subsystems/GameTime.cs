@@ -1,20 +1,24 @@
 using System;
 using System.Diagnostics;
 
-namespace GameSharp
+static class GameTime
 {
-    public static class GameTime
+    static Stopwatch stopwatch = Stopwatch.StartNew();
+    static TimeSpan previous = TimeSpan.Zero;
+
+    public static TimeSpan Elapsed
     {
-        private static Stopwatch stopwatch = Stopwatch.StartNew();
-        private static TimeSpan previous = TimeSpan.Zero;
-
-        public static TimeSpan Elapsed { get { return stopwatch.Elapsed; } }
-        public static TimeSpan Step { get; private set; }
-
-        public static void Update()
+        get
         {
-            Step = Elapsed - previous;
-            previous = Elapsed;
+            return stopwatch.Elapsed;
         }
+    }
+
+    public static TimeSpan Step { get; private set; }
+
+    public static void Update()
+    {
+        Step = Elapsed - previous;
+        previous = Elapsed;
     }
 }

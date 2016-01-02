@@ -1,39 +1,37 @@
-using System;
+using System.Threading;
 
-namespace GameSharp
+static partial class Game
 {
-    public static partial class Game
+    static bool isExiting = false;
+
+    static void InitSubsystems()
     {
-        static bool isExiting = false;
-        
-        public static void Exit()
-        {
-            isExiting = true;
-        }
-        
-        private static void InitSubsystems()
-        {
-            Log.Open("Log.txt");
-            Graphics.Init();            
-        }
+        Log.Init("Log.txt");
+        Graphics.Init();            
+    }
 
-        private static void UpdateSubsystems()
-        {
-            GameTime.Update();
-            Input.Update();
-            Graphics.Update();
-        }
+    static void UpdateSubsystems()
+    {
+        GameTime.Update();
+        Input.Update();
+        Graphics.Update();
+    }
 
-        public static void Main()
-        {
-            InitSubsystems();
+    static void Run()
+    {
+        InitSubsystems();
+        Init();
 
-            while (!isExiting)
-            {
-                UpdateSubsystems();
-                Update();
-                System.Threading.Thread.Sleep(1);
-            }
+        while (!isExiting)
+        {
+            UpdateSubsystems();
+            Update();
+            Thread.Sleep(1);
         }
+    }
+
+    public static void Exit()
+    {
+        isExiting = true;
     }
 }
