@@ -1,3 +1,3 @@
 del Bin\*.exe
 del Bin\*.pdb
-del Bin\*.txt
+del Bin\*.log

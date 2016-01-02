@@ -6,7 +6,7 @@ static partial class Game
 
     static void InitSubsystems()
     {
-        Log.Init("Log.txt");
+        Log.Init(Parameters.LogName);
         Graphics.Init();            
     }
 
@@ -19,9 +19,9 @@ static partial class Game
 
     static void Run()
     {
+        Setup();
         InitSubsystems();
-        Init();
-
+        Start();
         while (!isExiting)
         {
             UpdateSubsystems();
