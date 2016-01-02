@@ -2,29 +2,36 @@ using System;
 
 namespace GameSharp
 {
-    public class Game
+    public static partial class Game
     {
-        public Graphics Graphics { get; private set; }
-        public Input Input { get; private set; }
-    
-        bool isExiting = false;
+        static bool isExiting = false;
         
-        public void Exit()
+        public static void Exit()
         {
             isExiting = true;
         }
-
-        public void Run()
+        
+        private static void InitSubsystems()
         {
             Log.Open("Log.txt");
-            Graphics = new Graphics();
-            Input = new Input(this);
-            
+            Graphics.Init();            
+        }
+
+        private static void UpdateSubsystems()
+        {
+            GameTime.Update();
+            Input.Update();
+            Graphics.Update();
+        }
+
+        public static void Main()
+        {
+            InitSubsystems();
+
             while (!isExiting)
             {
-                GameTime.Update();
-                Input.Update();
-                Graphics.Update();
+                UpdateSubsystems();
+                Update();
                 System.Threading.Thread.Sleep(1);
             }
         }

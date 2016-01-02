@@ -4,11 +4,11 @@ using OpenGL;
 
 namespace GameSharp
 {
-    public class Graphics
+    public static class Graphics
     {
-        private IntPtr window;
+        private static IntPtr window;
 
-        string vs =
+        static string vs =
 @"#version 330 core
 uniform mat4 projectionMatrix;
 in vec3 position;
@@ -20,7 +20,7 @@ void main(void)
     fragmentColor = color;
 }";
                     
-        string fs =
+        static string fs =
 @"#version 330 core
 in vec3 fragmentColor;
 out vec4 color;
@@ -29,12 +29,12 @@ void main(void)
     color = vec4(fragmentColor, 1.0);
 }";
 
-        uint shaderProgram;
-        uint[] meshVAO = new uint[1];
-        uint[] meshVBO = new uint[1];
-        int vertexCount = 3;
+        static uint shaderProgram;
+        static uint[] meshVAO = new uint[1];
+        static uint[] meshVBO = new uint[1];
+        static int vertexCount = 3;
 
-        void CheckError(string message, uint shader = 0, uint program = 0)
+        static void CheckError(string message, uint shader = 0, uint program = 0)
         {
             var error = Gl.GetError();
             if (error != ErrorCode.NoError)
@@ -53,14 +53,14 @@ void main(void)
             }
         }
         
-        bool GetShaderCompileStatus(UInt32 shader)
+        static bool GetShaderCompileStatus(UInt32 shader)
         {
             int[] status = new int[1];
             Gl.GetShaderiv(shader, ShaderParameter.CompileStatus, status);
             return (status[0] > 0);
         }
 
-        public Graphics()
+        public static void Init()
         {
             SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
             SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -165,7 +165,7 @@ void main(void)
             CheckError("19");
          }
 
-         float[] Matrix4Perspective(float fovy, float aspect, float znear, float zfar)
+         static float[] Matrix4Perspective(float fovy, float aspect, float znear, float zfar)
          {
              float f = (float)(1.0f / Math.Tan(fovy * Math.PI / 180.0f));
              float A = (zfar + znear) / (znear - zfar);
@@ -176,7 +176,7 @@ void main(void)
                               0, 0, -1, 0 };
          }
 
-         public void Update()
+         public static void Update()
          {
             //Gl.ClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             //Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit );
