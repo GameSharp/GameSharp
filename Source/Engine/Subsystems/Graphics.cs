@@ -63,7 +63,10 @@ void main(void)
         SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
         SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL.SDL_GL_SetAttribute(SDL.SDL_GLattr.SDL_GL_CONTEXT_MINOR_VERSION, 3);
-        window = SDL.SDL_CreateWindow("GameSharp", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_OPENGL);
+        var windowFlags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_OPENGL;
+        if (Parameters.FullScreen)
+            windowFlags |= SDL.SDL_WindowFlags.SDL_WINDOW_FULLSCREEN;
+        window = SDL.SDL_CreateWindow("GameSharp", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, Parameters.WindowWidth, Parameters.WindowHeight, windowFlags);
         var glContext = SDL.SDL_GL_CreateContext(window);
 
         shaderProgram = Gl.CreateProgram();
